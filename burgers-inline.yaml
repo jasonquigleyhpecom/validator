@@ -1,0 +1,120 @@
+openapi: 3.1.0
+info:
+  title: Burgers
+  license:
+    name: License Agreement
+    url: https://www.example.com/licensing.html
+  version: latest
+  description: |
+    More burgers!
+    A unified API for consuming burgers 
+  contact:
+    name: Ronald Macdonald
+    email: burgers@example.com
+
+servers:
+  - url: https://api.example.com
+    description: Development environment
+
+externalDocs:
+  description: Find out more about burgers
+  url: https://www.example.com
+
+security:
+  - Bearer: []
+
+paths:
+  /burgers/create-burger:
+    post:
+      operationId: createBurger
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/burgerCreate'
+            examples:
+              pbjBurger:
+                summary: A horrible, nutty, sticky mess.
+                value:
+                  name: Peanut And Jelly
+                  patties: 3
+                  vegetarian: true
+        responses:
+          '201':
+            description: Burger created
+            headers:
+              Location:
+                description: URL for the created burger
+                schema:
+                  type: string
+                  format: uri
+                example: burgers/0e7f516c-0829-4135-83d6-09ce844ddd9d
+
+components:
+  securitySchemes:
+    Bearer:
+      description: Uses a token for authorization
+      type: http
+      scheme: bearer
+  schemas:
+    burgerCreate:
+      type: object
+      required:
+      - name
+      - patties
+      - vegetarian
+      - deep
+      properties:
+        name:
+          type: string
+        patties:
+          type: integer
+        vegetarian:
+          type: boolean
+        deep:
+          $ref: '#/components/schemas/somethingDeep'
+        # garbage:
+        #   type: boolean
+      unevaluatedProperties: false
+    somethingDeep:
+      allOf:
+      - type: object
+        required:
+        - deep
+        - deeper
+        properties:
+          deep:
+            type: integer
+          deeper:
+            $ref: '#/components/schemas/somethingDeeper'
+        unevaluatedProperties: false
+    somethingDeeper:
+      type: object
+      required:
+      - deeper
+      - really_deep
+      properties:
+        deeper:
+          type: integer
+        really_deep:
+          $ref: '#/components/schemas/reallyDeep'
+      unevaluatedProperties: false
+    reallyDeep:
+      type: object
+      required:
+      - really_deep
+      - super_deep
+      properties:
+        really_deep:
+          type: integer
+        super_deep:
+          $ref: '#/components/schemas/superDeep'
+      unevaluatedProperties: false
+    superDeep:
+      type: object
+      required:
+      - super_deep
+      properties:
+        super_deep:
+          type: integer
+      unevaluatedProperties: false

@@ -1,0 +1,26 @@
+post:
+  operationId: createBurger
+  requestBody:
+    content:
+      application/json:
+        schema:
+          unevaluatedProperties: false
+          type: object
+          required:
+          - name
+          - patties
+          - vegetarian
+          properties:
+            name:
+              type: string
+            patties:
+              type: integer
+            vegetarian:
+              type: boolean
+        examples:
+          pbjBurger:
+            summary: A horrible, nutty, sticky mess.
+            value:
+              name: Peanut And Jelly
+              patties: 3
+              vegetarian: true

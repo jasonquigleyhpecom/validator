@@ -1,0 +1,17 @@
+{
+	"name": "Garbage burger",
+	"patties": 2,
+	"garbage": true,
+	"deep": {
+		"deep": 1,
+		"deeper": {
+			"deeper": 1,
+			"really_deep": {
+				"really_deep": 1,
+				"super_deep": {
+					"super_deep": 1
+				}
+			}
+		}
+	}
+}

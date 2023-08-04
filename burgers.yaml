@@ -1,0 +1,35 @@
+openapi: 3.1.0
+info:
+  title: Burgers
+  license:
+    name: License Agreement
+    url: https://www.example.com/licensing.html
+  version: latest
+  description: |
+    More burgers!
+    A unified API for consuming burgers 
+  contact:
+    name: Ronald Macdonald
+    email: burgers@example.com
+
+servers:
+  - url: https://api.example.com
+    description: Development environment
+
+externalDocs:
+  description: Find out more about burgers
+  url: https://www.example.com
+
+security:
+  - Bearer: []
+
+paths:
+  /burgers/create-burger:
+    $ref: ./burgers-ref.yaml
+
+components:
+  securitySchemes:
+    Bearer:
+      description: Uses a token for authorization
+      type: http
+      scheme: bearer
